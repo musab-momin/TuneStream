@@ -3,9 +3,18 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div>
+    <div
+      className="
+      h-full
+      w-full
+      bg-neutral-900
+      overflow-hidden
+      overflow-y-auto
+      rounded-[8px]
+      p-4
+    "
+    >
       <h2>Testing</h2>
-      <Button>Click me</Button>
     </div>
   );
 }
