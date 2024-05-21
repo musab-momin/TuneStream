@@ -5,13 +5,8 @@ export default function Home() {
   return (
     <div
       className="
-      h-full
       w-full
-      bg-neutral-900
-      overflow-hidden
-      overflow-y-auto
-      rounded-[8px]
-      p-4
+      h-full
     "
     >
       <h2>Testing</h2>

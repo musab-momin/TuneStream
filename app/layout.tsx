@@ -18,12 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={roboto.className}>
-        <main className="flex h-full">
-          <Sidebar />
-          <section className="w-full p-2 ">{children}</section>
-        </main>
-      </body>
+      <body className={roboto.className}>{children}</body>
     </html>
   );
 }
