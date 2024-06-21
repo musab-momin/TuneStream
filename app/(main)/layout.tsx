@@ -1,7 +1,7 @@
 import Header from "@/components/header";
 import ContentHeader from "@/components/header/content-header";
 import Sidebar from "@/components/sidebar";
-import { ChevronLeft, ChevronRight, Home, Search } from "lucide-react";
+import Welcome from "@/components/Welcome";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -19,6 +19,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       >
         <Header>
           <ContentHeader />
+          <Welcome />
         </Header>
         {children}
       </section>

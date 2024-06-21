@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
+import { SupabaseProvider } from "@/context/SupabaseProvider";
 import "./globals.css";
-import Sidebar from "@/components/sidebar";
+import StoreProvider from "@/context/StoreProvider";
+import UserProvider from "@/context/UserProvider";
+import AuthModal from "@/components/AuthModal";
 
 const roboto = Roboto({ subsets: ["latin"], weight: ["400", "500", "700"] });
 
@@ -18,7 +21,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={roboto.className}>{children}</body>
+      <body className={roboto.className}>
+        <SupabaseProvider>
+          <StoreProvider>
+            <UserProvider>
+              {children}
+              <AuthModal />
+            </UserProvider>
+          </StoreProvider>
+        </SupabaseProvider>
+      </body>
     </html>
   );
 }

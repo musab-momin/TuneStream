@@ -1,5 +1,4 @@
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
+import Modal from "@/components/Modal";
 
 export default function Home() {
   return (
@@ -9,7 +8,9 @@ export default function Home() {
       h-full
     "
     >
-      <h2>Testing</h2>
+      <div className="px-6 py-4">
+        <h2 className="text-xl">Newest Songs</h2>
+      </div>
     </div>
   );
 }

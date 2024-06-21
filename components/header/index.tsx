@@ -11,7 +11,7 @@ const Header = ({
   return (
     <header
       className={twMerge(
-        "h-[74px] bg-gradient-to-b from-emerald-800 p-4 md:p-6 flex items-center",
+        "min-h-[74px] bg-gradient-to-b from-emerald-800 p-4 md:p-6",
         className
       )}
     >

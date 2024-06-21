@@ -1,24 +1,65 @@
 "use client";
 
 import React from "react";
+
 import { Button } from "../ui/button";
 import { useIsMobile } from "@/hooks/useIsMobile";
+import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
+import { openModal } from "@/features/modal/modal-slice";
+import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import { useRouter } from "next/navigation";
+import { User } from "lucide-react";
 
 const AuthButtons = () => {
+  const supabaseClient = useSupabaseClient();
+  const router = useRouter();
   const isMobile = useIsMobile();
-  console.log("~@@ isMobile: ", isMobile);
+  const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.user?.user);
+
+  const handleLogout = async () => {
+    const { error } = await supabaseClient.auth.signOut();
+    router.refresh();
+
+    if (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div className="flex items-center">
-      <Button variant={"ghost"}>
-        <span className="font-bold text-[#b3b3b3]">Sign up</span>
-      </Button>
-      <Button
-        variant={"default"}
-        size={isMobile ? "default" : "lg"}
-        className="bg-green-500 rounded-[100px]"
-      >
-        <span className="font-bold text-white">Log in</span>
-      </Button>
+      {user ? (
+        <div className="flex gap-x-4 items-center">
+          <Button
+            onClick={handleLogout}
+            variant={"default"}
+            size={isMobile ? "default" : "lg"}
+            className="bg-green-500 rounded-[100px]"
+          >
+            Logout
+          </Button>
+          <Button
+            onClick={() => router.push("/account")}
+            className="bg-white rounded-full"
+          >
+            <User color="#121212" />
+          </Button>
+        </div>
+      ) : (
+        <>
+          <Button variant={"ghost"} onClick={() => dispatch(openModal())}>
+            <span className="font-bold text-[#b3b3b3]">Sign up</span>
+          </Button>
+          <Button
+            variant={"default"}
+            size={isMobile ? "default" : "lg"}
+            className="bg-green-500 rounded-[100px]"
+            onClick={() => dispatch(openModal())}
+          >
+            <span className="font-bold text-white">Log in</span>
+          </Button>
+        </>
+      )}
     </div>
   );
 };
