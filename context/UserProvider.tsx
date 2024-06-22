@@ -11,16 +11,16 @@ import { useEffect } from "react";
 const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const { supabaseClient } = useSessionContext();
   const user = useSupaUser();
+  const appUser = useAppSelector((state) => state.user?.user);
   const userDetails = useAppSelector((state) => state.user?.userDetails);
-  const isLoading = useAppSelector((state) => state.user?.isLoading);
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (user && !userDetails && !isLoading) {
+    if (user && !appUser && !userDetails) {
       dispatch(fetchCurrentUser(supabaseClient));
       dispatch(setUser(user));
-    } else {
+    } else if (!user) {
       dispatch(fetchCurrentUser(supabaseClient));
       dispatch(setUser(null));
     }

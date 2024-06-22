@@ -6,7 +6,7 @@ import { Button } from "../ui/button";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { openModal } from "@/features/modal/modal-slice";
-import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/navigation";
 import { User } from "lucide-react";
 
@@ -16,6 +16,7 @@ const AuthButtons = () => {
   const isMobile = useIsMobile();
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.user?.user);
+  const session = useSession();
 
   const handleLogout = async () => {
     const { error } = await supabaseClient.auth.signOut();
@@ -34,13 +35,13 @@ const AuthButtons = () => {
             onClick={handleLogout}
             variant={"default"}
             size={isMobile ? "default" : "lg"}
-            className="bg-green-500 rounded-[100px]"
+            className="bg-green-500 rounded-[100px] hover:bg-white hover:text-[#121212]"
           >
             Logout
           </Button>
           <Button
             onClick={() => router.push("/account")}
-            className="bg-white rounded-full"
+            className="bg-white rounded-full hover:bg-white"
           >
             <User color="#121212" />
           </Button>

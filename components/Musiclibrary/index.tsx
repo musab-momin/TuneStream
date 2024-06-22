@@ -1,8 +1,21 @@
+"use client";
+
 import React from "react";
 import { Library, Plus } from "lucide-react";
 import { Button } from "../ui/button";
+import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
+import { openModal } from "@/features/modal/modal-slice";
 
 const MusicLibrary = () => {
+  const user = useAppSelector((state) => state.user?.user);
+  const dispatch = useAppDispatch();
+
+  const handleCreateLibrary = () => {
+    if (!user) {
+      dispatch(openModal());
+    }
+  };
+
   return (
     <div className="h-full bg-neutral-900">
       <div className="flex items-center justify-between">
@@ -15,6 +28,7 @@ const MusicLibrary = () => {
         <div
           role="button"
           className="rounded-[100px] h-[22px] w-[22px] bg-transparent hover:bg-[#2a2a2a] transition flex justify-center items-center"
+          onClick={handleCreateLibrary}
         >
           <Plus color="#b3b3b3" size={15} />
         </div>
@@ -26,7 +40,8 @@ const MusicLibrary = () => {
           <Button
             variant={"default"}
             size={"sm"}
-            className="block bg-white text-[#121212] mt-4 rounded-[100px] h-8 px-8"
+            className="block bg-white text-[#121212] mt-4 rounded-[100px] h-8 px-8 hover:text-white"
+            onClick={handleCreateLibrary}
           >
             Create Playlist
           </Button>
