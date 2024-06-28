@@ -5,6 +5,7 @@ import "./globals.css";
 import StoreProvider from "@/context/StoreProvider";
 import UserProvider from "@/context/UserProvider";
 import AuthModal from "@/components/AuthModal";
+import UploadModal from "@/components/UploadModal";
 
 const roboto = Roboto({ subsets: ["latin"], weight: ["400", "500", "700"] });
 
@@ -27,6 +28,7 @@ export default function RootLayout({
             <UserProvider>
               {children}
               <AuthModal />
+              <UploadModal />
             </UserProvider>
           </StoreProvider>
         </SupabaseProvider>

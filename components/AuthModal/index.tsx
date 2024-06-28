@@ -14,6 +14,7 @@ import { ThemeSupa } from "@supabase/auth-ui-shared";
 
 const AuthModal = () => {
   const isModalOpen = useAppSelector((state) => state.modal.isOpen);
+  const variant = useAppSelector((state) => state.modal.variant);
   const dispatch = useAppDispatch();
 
   const supabaseClient = useSupabaseClient();
@@ -35,7 +36,7 @@ const AuthModal = () => {
 
   return (
     <Modal
-      isOpen={isModalOpen}
+      isOpen={isModalOpen && variant === "AUTH"}
       title="Welcome back"
       description="Login to your Account"
       onChange={onChange}

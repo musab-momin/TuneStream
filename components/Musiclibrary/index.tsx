@@ -12,7 +12,9 @@ const MusicLibrary = () => {
 
   const handleCreateLibrary = () => {
     if (!user) {
-      dispatch(openModal());
+      dispatch(openModal("AUTH"));
+    } else {
+      dispatch(openModal("UPLOAD"));
     }
   };
 

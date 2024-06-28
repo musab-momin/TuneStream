@@ -48,14 +48,14 @@ const AuthButtons = () => {
         </div>
       ) : (
         <>
-          <Button variant={"ghost"} onClick={() => dispatch(openModal())}>
+          <Button variant={"ghost"} onClick={() => dispatch(openModal("AUTH"))}>
             <span className="font-bold text-[#b3b3b3]">Sign up</span>
           </Button>
           <Button
             variant={"default"}
             size={isMobile ? "default" : "lg"}
             className="bg-green-500 rounded-[100px]"
-            onClick={() => dispatch(openModal())}
+            onClick={() => dispatch(openModal("AUTH"))}
           >
             <span className="font-bold text-white">Log in</span>
           </Button>
