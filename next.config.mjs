@@ -7,6 +7,11 @@ const nextConfig = {
         hostname: "safat-bookstore.s3.ap-south-1.amazonaws.com",
         pathname: "**",
       },
+      {
+        protocol: "https",
+        hostname: "tdozvpqcnzwyqzpphmqp.supabase.co",
+        pathname: "**",
+      },
     ],
   },
 };
