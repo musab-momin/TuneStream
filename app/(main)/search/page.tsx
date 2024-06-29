@@ -1,3 +1,11 @@
+import SearchedSong from "@/components/SearchedSong";
+import SearchForm from "@/components/SearchForm";
+
 export default function Page() {
-  return <div>Search</div>;
+  return (
+    <>
+      <SearchForm />
+      <SearchedSong />
+    </>
+  );
 }
