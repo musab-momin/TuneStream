@@ -11,19 +11,22 @@ export const getSongsByUserId = async (): Promise<Song[]> => {
     await supabase.auth.getSession();
 
   if (sessionError) {
-    console.log("~@@ LOGIN BEFORE PLAYING SONG: >>> ", sessionError?.message);
+    console.error("~@@ LOGIN BEFORE PLAYING SONG: >>> ", sessionError?.message);
     return [];
   }
 
   let { data, error } = await supabase
     .from("songs")
     .select("*")
-    .eq("user", sessionData.session?.user)
+    .eq("user", sessionData.session?.user?.id)
     .order("created_at", { ascending: false })
     .limit(10);
 
   if (error) {
-    console.log("~@@ ERROR WHILE FETCHING SONG FROM USER >>> ", error?.message);
+    console.error(
+      "~@@ ERROR WHILE FETCHING SONG FROM USER >>> ",
+      error?.message
+    );
     return [];
   }
 

@@ -10,25 +10,13 @@ const SongCard = ({
   songDetails,
   handleClick,
 }: {
-  songDetails: Song;
-  handleClick: (id: number) => void;
+  songDetails?: Song;
+  handleClick?: (id: number) => void;
 }) => {
-  const {
-    id,
-    title,
-    created_at,
-    file_url,
-    poster_url,
-    singer,
-    user,
-    album,
-    listener,
-    duration,
-    music_by,
-  } = songDetails || {};
+  const { id, title, poster_url, singer } = songDetails || {};
 
-  const posterPath = useLoadPoster(poster_url);
-  console.log("~@@ poster: ", posterPath);
+  const posterPath = useLoadPoster(poster_url!);
+
   return (
     <div
       className="
@@ -46,8 +34,9 @@ const SongCard = ({
       hover:bg-neutral-400/10
       transition
       p-3
+      w-[23%]
     "
-      onClick={() => handleClick(id)}
+      onClick={() => handleClick && handleClick(id!)}
     >
       <div
         className="
