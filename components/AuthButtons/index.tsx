@@ -9,6 +9,7 @@ import { openModal } from "@/features/modal/modal-slice";
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/navigation";
 import { User } from "lucide-react";
+import { resetActiveSong } from "@/features/songs/songs-slice";
 
 const AuthButtons = () => {
   const supabaseClient = useSupabaseClient();
@@ -20,6 +21,7 @@ const AuthButtons = () => {
 
   const handleLogout = async () => {
     const { error } = await supabaseClient.auth.signOut();
+    dispatch(resetActiveSong());
     router.refresh();
 
     if (error) {

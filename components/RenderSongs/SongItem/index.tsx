@@ -5,7 +5,13 @@ import { Song } from "@/types/general";
 import Image from "next/image";
 import React from "react";
 
-const SongItem = ({ songDetails }: { songDetails?: Song }) => {
+const SongItem = ({
+  songDetails,
+  handleClick,
+}: {
+  songDetails?: Song;
+  handleClick?: (id: number) => void;
+}) => {
   const posterPath = useLoadPoster(songDetails?.poster_url!);
   return (
     <div
@@ -19,6 +25,7 @@ const SongItem = ({ songDetails }: { songDetails?: Song }) => {
     p-2
     rounded-md
   "
+      onClick={() => handleClick && handleClick(songDetails?.id!)}
     >
       <div
         className="

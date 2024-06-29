@@ -6,6 +6,7 @@ import StoreProvider from "@/context/StoreProvider";
 import UserProvider from "@/context/UserProvider";
 import AuthModal from "@/components/AuthModal";
 import UploadModal from "@/components/UploadModal";
+import Gramophone from "@/components/Gramophone";
 
 const roboto = Roboto({ subsets: ["latin"], weight: ["400", "500", "700"] });
 
@@ -27,6 +28,7 @@ export default function RootLayout({
           <StoreProvider>
             <UserProvider>
               {children}
+              <Gramophone />
               <AuthModal />
               <UploadModal />
             </UserProvider>

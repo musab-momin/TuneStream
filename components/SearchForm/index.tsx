@@ -48,7 +48,7 @@ const SearchForm = () => {
             id="searchQuery"
             name="searchQuery"
             disabled={pending}
-            placeholder={"What do you want to play"}
+            placeholder={"What do you want to play?"}
             className="w-full md:w-[400px] !bg-transparent focus:outline-none"
           />
         </div>

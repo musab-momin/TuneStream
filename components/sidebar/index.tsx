@@ -4,15 +4,12 @@ import Navigation from "../navigation";
 import Library from "../Musiclibrary";
 import { getSongsByUserId } from "@/actions/getSongsByUserId";
 import RenderSongs from "../RenderSongs";
-import SongCard from "../RenderSongs/SongCard";
 import { Song } from "@/types/general";
 import SongItem from "../RenderSongs/SongItem";
 import SongList from "../RenderSongs/SongList";
 import CreateLibrary from "../CreateLibraray";
 
 const Sidebar = async () => {
-  const userSongList = await getSongsByUserId();
-
   return (
     <nav
       className="

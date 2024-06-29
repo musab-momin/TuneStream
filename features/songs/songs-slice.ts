@@ -1,15 +1,22 @@
 "use client";
 
-import { createSlice } from "@reduxjs/toolkit";
+import { Song } from "@/types/general";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 type UserContextType = {
-  songs: [];
+  activeSong: {
+    id: null;
+    songInfo: null | Song;
+  };
   searchedSongs: [];
   isLoading: boolean;
 };
 
 const initialState: UserContextType = {
-  songs: [],
+  activeSong: {
+    id: null,
+    songInfo: null,
+  },
   searchedSongs: [],
   isLoading: false,
 };
@@ -21,8 +28,16 @@ const songsSlice = createSlice({
     setSearchedSongs(state, action) {
       state.searchedSongs = action.payload;
     },
+    setActiveSong(state, action) {
+      state.activeSong = action.payload;
+    },
+
+    resetActiveSong(state) {
+      state.activeSong = { id: null, songInfo: null };
+    },
   },
 });
 
-export const { setSearchedSongs } = songsSlice.actions;
+export const { setSearchedSongs, setActiveSong, resetActiveSong } =
+  songsSlice.actions;
 export default songsSlice.reducer;

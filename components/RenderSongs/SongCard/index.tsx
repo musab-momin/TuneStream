@@ -34,7 +34,8 @@ const SongCard = ({
       hover:bg-neutral-400/10
       transition
       p-3
-      w-[23%]
+      w-[40%]
+      md:w-[23%]
     "
       onClick={() => handleClick && handleClick(id!)}
     >
