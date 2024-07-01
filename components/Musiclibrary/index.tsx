@@ -2,21 +2,16 @@
 
 import React from "react";
 import { Library, Plus } from "lucide-react";
-import { Button } from "../ui/button";
-import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
+import { useAppDispatch } from "@/hooks/useRedux";
 import { openModal } from "@/features/modal/modal-slice";
+import { useIsAuthenticated } from "@/hooks/useIsAuthenticated";
 
 const MusicLibrary = ({ songLibrary }: { songLibrary: React.ReactNode }) => {
-  const user = useAppSelector((state) => state.user?.user);
   const dispatch = useAppDispatch();
 
-  const handleCreateLibrary = () => {
-    if (!user) {
-      dispatch(openModal("AUTH"));
-    } else {
-      dispatch(openModal("UPLOAD"));
-    }
-  };
+  const handleCreateLibrary = useIsAuthenticated(() => {
+    dispatch(openModal("UPLOAD"));
+  });
 
   return (
     <div className="h-full bg-neutral-900">
